@@ -240,6 +240,30 @@ form {
   background: rgb(231, 100, 126);
 }
 
+.pagination {
+  margin-top: 2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.pagination a{
+  text-decoration: none;
+  color: #0065BD;
+  padding: 0.5rem;
+  border: 1px solid white;
+  margin: 0;
+  
+  background-color: rgb(138, 193, 255);
+}
+
+.pagination a:hover,
+.pagination a:active
+.pagination a.active{
+  color: white;
+  background-color: #3d8dd3;
+}
+
+
 @media (min-width: 768px) {
   .main-header__nav {
     display: flex;

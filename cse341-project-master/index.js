@@ -14,11 +14,10 @@ const cors = require('cors')
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb+srv://new_user:AXYHrupDUWdkCILP@cluster0.j240c.mongodb.net/shop?retryWrites=true&w=majority';                      
 
 const errorController = require('./controllers/error');
-const User = require('./models/user');
 
 const app = express();
 const store = new MongoDBStore({
-  uri: MONGODB_URL,
+  uri: MONGODB_URL, 
   collection: 'sessions'
 });
 const csrfProtection = csrf();
@@ -51,9 +50,6 @@ const prove03Routes = require("./routes/prove03");
 const prove04Routes = require("./routes/prove04");
 const prove08Routes = require("./routes/prove08");
 const classActivities = require("./routes/03/routes");
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-const authRoutes = require('./routes/auth');
 const { use } = require('./routes/ta01');
 //const { collection } = require('./models/user');
 
@@ -76,22 +72,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  if(!req.session.user){
-    return next();
-  }
-  User.findById(req.session.user._id)
-    .then(user => {
-      if(!user) {
-        return next();
-      }
-      req.user = user;
-      next();
-    })
-    .catch(err => {
-      next(new Error(err));
-    });   
-});
 
 app.use('/ta01', ta01Routes);
 app.use('/ta02', ta02Routes);
@@ -103,7 +83,6 @@ app.use('/prove03', prove03Routes);
 app.use('/prove04', prove04Routes);
 app.use('/prove08', prove08Routes);
 app.use('/03', classActivities);
-app.use('/admin', adminRoutes);
 
 
 app.get('/', (req, res, next) => {
@@ -111,20 +90,9 @@ app.get('/', (req, res, next) => {
   res.render('pages/index', {title: 'Welcome to my CSE341 repo', path: '/'});
 })
 
-app.use( shopRoutes);
-app.use( authRoutes);
-
-app.get('/500', errorController.get500);
 
 app.use(errorController.get404);
 
-app.use((error, req, res, next) => {
-  res.status(500).render('500', { 
-    pageTitle: 'Server Error', 
-    path: '/500',
-    isAuthenticated: req.session.isLoggedIn 
-  });
-});
 
 mongoose
   .connect(MONGODB_URL, options)
@@ -134,9 +102,3 @@ mongoose
   .catch(err => {
     console.log(err);
   });
-
-    
-
-
-
-  

@@ -1,40 +1,35 @@
-const Product = require('../models/pr08');
+const Product = require('../models/product');
 
-const ITEMS_PER_PAGE = 10
+const fs = require('fs');
+const path = require('path');
+
+const ITEMS_PER_PAGE = 10;
 
 exports.getIndex = (req, res, next) => {
-    const page = +req.query.page || 1;
-    let totalItems;
-
-    /*Product.find()
-    .countDocuments()
+  const page = +req.query.page || 1;
+  let totalItems;
+ 
+  Product.find()
+    .countDocuments() 
     .then(numProducts => {
-        totalItems = numProducts;
-        return Product.find()
-        .skip((page - 1) * ITEMS_PER_PAGE)
+      totalItems = numProducts;
+      console.log(totalItems)
+      return Product.find()
+        .skip((page - 1) * ITEMS_PER_PAGE) 
         .limit(ITEMS_PER_PAGE);
-    })
+    }) 
     .then(products => {
-        res.render('pages/Prove08/Prove08', { 
-            title: 'Prove Activity 00', 
-            path: '/pr08',
-            products: products,
-            currentPage: page,
-            hasNextPage: ITEMS_PER_PAGE * page < totalItems,
-            hasPreviousPage: page > 1,
-            nextPage: page + 1,
-            previousPage: page - 1
-            lastPage: Math.cel(totalItems / ITEMS_PER_PAGE)
-        });
+      res.render('pages/Prove08/prove08', {
+        prods: products,
+        pageTitle: 'Shop', 
+        path: 'prove08',
+        currentPage: page,
+        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+        hasPreviousPage: page > 1,
+        nextPage: page + 1,
+        previousPage: page - 1,
+        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE)
+      });
     })
-    .catch();*/
-
-    Product.fetchAll(products => {
-        res.render('pages/Prove08/Prove08', { 
-            title: 'Prove Activity 00', 
-            path: '/pr08',
-            products: products
-        });
-    })
-
+    .catch();
 };
