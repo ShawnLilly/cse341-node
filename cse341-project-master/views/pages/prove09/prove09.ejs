@@ -1,0 +1,37 @@
+<%- include('../../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+
+<body>
+    <%- include('../../includes/nav.ejs') %>
+
+    <main>
+        <% if (data.length > 0) { %>
+            <div class="grid">
+                <% for (i=0; i < data.length; i++) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= data[i].name %></h1>
+                        </header>
+                        <div class="card__image">
+
+                        </div>
+                        <div class="card__content">
+                            <p class="product__description"><%= data[i].url %></p>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+            <section class="pagination">
+                <% if (hasPreviousPage) {%>
+                    <a href="/prove09/prev">previous</a>
+                    <% } %>
+                    <% if (hasNextPage) {%>
+                    <a href="/prove09/next">next</a>
+                    <% } %>
+        <% } else { %>
+            <h1>No Pokimon Found!</h1>
+        <% } %>
+    </main>
+<%- include('../../includes/end.ejs') %>

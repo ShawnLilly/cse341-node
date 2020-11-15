@@ -16,6 +16,16 @@ const MONGODB_URL = process.env.MONGODB_URL || 'mongodb+srv://new_user:AXYHrupDU
 const errorController = require('./controllers/error');
 
 const app = express();
+
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 const store = new MongoDBStore({
   uri: MONGODB_URL, 
   collection: 'sessions'
@@ -49,6 +59,7 @@ const prove02Routes = require("./routes/prove02");
 const prove03Routes = require("./routes/prove03");
 const prove04Routes = require("./routes/prove04");
 const prove08Routes = require("./routes/prove08");
+const prove09Routes = require("./routes/prove09");
 const classActivities = require("./routes/03/routes");
 const { use } = require('./routes/ta01');
 //const { collection } = require('./models/user');
@@ -82,6 +93,7 @@ app.use('/prove02', prove02Routes);
 app.use('/prove03', prove03Routes);
 app.use('/prove04', prove04Routes);
 app.use('/prove08', prove08Routes);
+app.use('/prove09', prove09Routes);
 app.use('/03', classActivities);
 
 
