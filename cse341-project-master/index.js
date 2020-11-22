@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-const csrf = require('csurf');
+//const csrf = require('csurf');
 const flash = require('connect-flash');
 
 const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localhost:5000
@@ -30,7 +30,7 @@ const store = new MongoDBStore({
   uri: MONGODB_URL, 
   collection: 'sessions'
 });
-const csrfProtection = csrf();
+//const csrfProtection = csrf();
 
 const corsOptions = {
     origin: "https://cse341-2020.herokuapp.com/",
@@ -60,6 +60,7 @@ const prove03Routes = require("./routes/prove03");
 const prove04Routes = require("./routes/prove04");
 const prove08Routes = require("./routes/prove08");
 const prove09Routes = require("./routes/prove09");
+const prove10Routes = require("./routes/prove10");
 const classActivities = require("./routes/03/routes");
 const { use } = require('./routes/ta01');
 //const { collection } = require('./models/user');
@@ -74,14 +75,14 @@ app.use(
     false, store: store
   })
 );
-app.use(csrfProtection);
+//app.use(csrfProtection);
 app.use(flash());
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
   res.locals.csrfToken = req.csrfToken();
   next();
-});
+});*/
 
 
 app.use('/ta01', ta01Routes);
@@ -94,6 +95,7 @@ app.use('/prove03', prove03Routes);
 app.use('/prove04', prove04Routes);
 app.use('/prove08', prove08Routes);
 app.use('/prove09', prove09Routes);
+app.use('/prove10', prove10Routes);
 app.use('/03', classActivities);
 
 

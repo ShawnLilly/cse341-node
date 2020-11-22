@@ -1,0 +1,15 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+	https://cse341-2020.herokuapp.com/prove10
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+	https://github.com/ShawnLilly/cse341-node
+3. What aspect of your project did you work on this week?
+I did more work on the view design and implementation
+
+4. Are you on track with your project development plan?
+I am on track with my part of the projext
+
+5. What concerns do you have about your project?
+Not mush just that i might get stuck with something.

@@ -1,0 +1,25 @@
+<%- include('../../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+
+<body>
+    <%- include('../../includes/nav.ejs') %>
+    <div class="jumbotron text-center">
+        <div class="container">
+
+        </div>
+        <div class="centered">
+            <% for (let avenger of data.avengers){%>
+            <h1><%= avenger.name %> </h1>
+            <h2><%= avenger.age %> </h2>
+            <br>
+            <% } %>
+            <form class="black" action="prove10/insert" method="POST">
+                <input type="text" name="hero" placeholder="Add a new Hero">
+                <input type="text" name="age" placeholder="Add the age">
+                <button class="blackBTN">+</button>
+            </form>
+        </div>
+    </div>
+<%- include('../../includes/end.ejs') %>

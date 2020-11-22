@@ -1,0 +1,28 @@
+{
+    "avengers": [
+        {
+            "name": "Tony Stark",
+            "age": "30"
+        },
+        {
+            "name": "Steve Rogers",
+            "age": "120"
+        },
+        {
+            "name": "Thor Odinson",
+            "age": "35"
+        },
+        {
+            "name": "Bruce Banner",
+            "age": "36"
+        },
+        {
+            "name": "Natasha Romanova",
+            "age": "31"
+        },
+        {
+            "name": "Clint Barton",
+            "age": "37"
+        }
+    ]
+}
