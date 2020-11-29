@@ -61,6 +61,7 @@ const prove04Routes = require("./routes/prove04");
 const prove08Routes = require("./routes/prove08");
 const prove09Routes = require("./routes/prove09");
 const prove10Routes = require("./routes/prove10");
+const prove11Routes = require("./routes/prove11");
 const classActivities = require("./routes/03/routes");
 const { use } = require('./routes/ta01');
 //const { collection } = require('./models/user');
@@ -96,6 +97,7 @@ app.use('/prove04', prove04Routes);
 app.use('/prove08', prove08Routes);
 app.use('/prove09', prove09Routes);
 app.use('/prove10', prove10Routes);
+app.use('/prove11', prove11Routes);
 app.use('/03', classActivities);
 
 
@@ -111,8 +113,19 @@ app.use(errorController.get404);
 mongoose
   .connect(MONGODB_URL, options)
   .then(result => {
-    app.listen(PORT, () => {console.log(`Listening on ${ PORT }`)});
+    const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+    const io = require('socket.io')(server);
+    io.on('connection', socket => {
+      console.log('Client connected');
+      socket.on('broadcast', data => {
+        socket.broadcast.emit("broadcast", data);
+      })
+    });
   })
   .catch(err => {
     console.log(err);
   });
+
+
+
+

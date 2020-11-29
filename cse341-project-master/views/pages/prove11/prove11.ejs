@@ -1,0 +1,28 @@
+<%- include('../../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+
+<body>
+    <%- include('../../includes/nav.ejs') %>
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1><%= title %></h1>
+        </div>
+        <div class="centered">
+            <div class="container">
+                <ul id="heroList"> 
+                </ul>
+                <input class="black" type="text" id="inputH" placeholder="Add a new Hero">
+
+                <!--does noothing, back code not working-->
+                <input class="black" type="text" id="inputA" placeholder="Add the age">
+                
+                <button class="black" id="submit">Add Name</button>
+            </div>
+            <script src="/socket.io/socket.io.js"></script>
+            <script data-main="scripts/main" src="/scripts/prove11.js"></script>    
+        </div>
+    </div>
+
+<%- include('../../includes/end.ejs') %>
